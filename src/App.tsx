@@ -13,7 +13,7 @@ function App() {
     const [guessedLetters, setGuessedLetters] = React.useState<string[]>([]);
     const [incorrectLetters, setIncorrectLetters] = React.useState<string[]>([]);
     const [buttonClasses, setButtonClasses] = React.useState<string[]>(Array.from({ length: 26 }, () => ''));
-
+    const isSame = new Set(guessedLetters).size === new Set(wordToGuess).size;
     const addGuessedLetter = (letter: string) => {
         if (wordToGuess.includes(letter) && !guessedLetters.includes(letter)) {
             setGuessedLetters([...guessedLetters, letter]);
@@ -22,8 +22,9 @@ function App() {
         }
     }
 
+    
     const isWon = () => {
-        if (guessedLetters.length === wordToGuess.length) return 'You Won!'
+        if (isSame) return 'You Won!'
         else return 'You Lose :('
     }
 
@@ -40,7 +41,8 @@ function App() {
         updatedButtonClasses[index] = wordToGuess.includes(letter) ? 'active' : 'inactive';
         setButtonClasses(updatedButtonClasses);
     };
-
+    console.log(wordToGuess)
+    console.log(isSame)
     return (
         <>
             <div style={{
@@ -55,12 +57,12 @@ function App() {
                     fontSize: '2rem',
                     textAlign: 'center'
                 }}>
-                    <span>{incorrectLetters.length > 5 ? isWon() : 'Play Hangman!'} <ResetGame handleReset={handleReset} /></span>
+                    <span>{(incorrectLetters.length > 5 || isSame) ? isWon() : 'Play Hangman!'} <ResetGame handleReset={handleReset} /></span>
                 </div>
 
                 <HangmanDrawing numOfGuesses={incorrectLetters.length} />
                 <HangmanWord wordToGuess={wordToGuess} guessedLetters={guessedLetters} numOfGuesses={incorrectLetters.length} />
-                <div style={{ alignSelf: 'stretch' }}><Keyboard buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} /> </div>
+                <div style={{ alignSelf: 'stretch' }}><Keyboard buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} /> </div>
 
             </div>
         </>
