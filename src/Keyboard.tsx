@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
 
 const keys = ['a','b','c','d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w','x', 'y', 'z'];
 
-export const Keyboard = ({ handleButtonClick, numOfGuesses, buttonClasses, isSame }:
-     { handleButtonClick: (letter: string, index:number) => void, numOfGuesses: number, buttonClasses: string[], isSame: boolean }) => {
+export const Keyboard = ({ handleButtonClick, numOfGuesses, buttonClasses, isSame, isChecked }:
+     { handleButtonClick: (letter: string, index:number) => void, numOfGuesses: number, buttonClasses: string[], isSame: boolean, isChecked : boolean }) => {
    
     return (
         <div style={{
@@ -13,7 +12,7 @@ export const Keyboard = ({ handleButtonClick, numOfGuesses, buttonClasses, isSam
         }}>
             {keys.map((key, index) => (
                 <button
-                    className={`key ${buttonClasses[index]}`}
+                    className={`key ${!isChecked? '': 'dark-theme'} ${buttonClasses[index]}`}
                     onClick={() => handleButtonClick(key, index)}
                     key={key}
                     disabled={buttonClasses[index] !== '' || (numOfGuesses > 5) || isSame}

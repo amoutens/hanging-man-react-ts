@@ -3,10 +3,11 @@ import React from 'react';
 type HangmanWordProps = {
     wordToGuess: string,
     guessedLetters: string[],
-    numOfGuesses: number
+    numOfGuesses: number,
+    isChecked : boolean
 }
 
-export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses}: HangmanWordProps) => {
+export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecked}: HangmanWordProps) => {
     const word = wordToGuess;
     const missingLetters = wordToGuess.split('').filter(el => !guessedLetters.includes(el));
     const isGameOver = numOfGuesses >5;
@@ -26,15 +27,16 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses}: Hangman
                 let textColor = 'transparent';
 
                 if (isGuessed) {
-                    textColor = 'black';
+                    textColor = !isChecked ? 'black' : 'white';
                 } else if (isGameOver && isMissing) {
-                    textColor = 'red';
+                    textColor = !isChecked ? 'red': "#FF7F50"	;
                 }
 
                 return (
                     <span key={index} style={{
-                        borderBottom: '.1em solid black',
-                        color: textColor
+                        borderBottom: `.1em solid ${!isChecked? "black" : 'white'}`,
+                        color: textColor,
+                        transition: '0.2s'
                     }}>
                         <span>
                             {letter}
