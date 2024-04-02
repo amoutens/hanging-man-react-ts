@@ -36,7 +36,7 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecke
                     <span key={index} style={{
                         borderBottom: `.1em solid ${!isChecked? "black" : 'white'}`,
                         color: textColor,
-                        transition: '0.2s'
+                        
                     }}>
                         <span>
                             {letter}
