@@ -41,7 +41,7 @@ export function App() {
         document.body.style.transition = '0.2s';
     }
     }
-
+    
     const selectDifficulty = (index: number): void => {
         switch(index) {
             case 0:
@@ -118,7 +118,7 @@ export function App() {
                             </button>
                         </div>
                         <span className='level-main-container'>
-                            {isLevelClicked && <span className={`level-container `}><LevelChange isCheckedTheme={isCheckedTheme} selectDifficulty={selectDifficulty}/></span>}
+                            {isLevelClicked && <span className={`level-container `}><LevelChange isCheckedTheme={isCheckedTheme} selectDifficulty={selectDifficulty} setIsLevelClicked={setIsLevelClicked}/></span>}
                         </span>
                     </span>
                 </div>
