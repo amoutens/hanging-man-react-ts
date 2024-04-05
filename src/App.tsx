@@ -19,7 +19,9 @@ export function App() {
     const [isCheckedTheme, setIsCheckedTheme] = React.useState<boolean>(false);
     const isSame = new Set(guessedLetters).size === new Set(wordToGuess).size;
     const [isLevelClicked, setIsLevelClicked] = React.useState<boolean>(false);
-    
+    const [pressedKeys, setPressedKeys] = React.useState<string[]>([]);
+    const [gameOver, setGameOver] = React.useState<boolean>(false);
+
     React.useEffect(() => {
         setWordToGuess(wordArrDiff[Math.floor(Math.random() * wordArrDiff.length)]);
     }, [wordArrDiff]);
@@ -81,6 +83,8 @@ export function App() {
         setGuessedLetters([]);
         setIncorrectLetters([]);
         setButtonClasses(Array.from({ length: 26 }, () => ''));
+        setPressedKeys([]);
+        setGameOver(false);
     }
 
     const handleButtonClick = (letter: string, index: number) => {
@@ -129,7 +133,7 @@ export function App() {
             <HangmanDrawing numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
             <HangmanWord wordToGuess={wordToGuess} guessedLetters={guessedLetters} numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
             <div style={{ alignSelf: 'stretch' }}>
-                <Keyboard buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} isChecked={isCheckedTheme}  />
+                <Keyboard gameOver={gameOver} setGameOver={setGameOver} pressedKeys={pressedKeys} setPressedKeys={setPressedKeys} buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} isChecked={isCheckedTheme}  />
             </div>
         </div>
     );
