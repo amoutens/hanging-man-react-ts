@@ -15,7 +15,6 @@ export const LevelChange = ({ isCheckedTheme, selectDifficulty, setIsLevelClicke
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };

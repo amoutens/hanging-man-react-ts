@@ -131,7 +131,7 @@ export function App() {
                 </div>
             </div>
             <HangmanDrawing numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
-            <HangmanWord wordToGuess={wordToGuess} guessedLetters={guessedLetters} numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
+            <HangmanWord isSame={isSame} wordToGuess={wordToGuess} guessedLetters={guessedLetters} numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
             <div style={{ alignSelf: 'stretch' }}>
                 <Keyboard gameOver={gameOver} setGameOver={setGameOver} pressedKeys={pressedKeys} setPressedKeys={setPressedKeys} buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} isChecked={isCheckedTheme}  />
             </div>

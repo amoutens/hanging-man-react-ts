@@ -4,10 +4,11 @@ type HangmanWordProps = {
     wordToGuess: string,
     guessedLetters: string[],
     numOfGuesses: number,
-    isChecked : boolean
+    isChecked : boolean,
+    isSame: boolean
 }
 
-export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecked}: HangmanWordProps) => {
+export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecked, isSame}: HangmanWordProps) => {
     const word = wordToGuess;
     const missingLetters = wordToGuess.split('').filter(el => !guessedLetters.includes(el));
     const isGameOver = numOfGuesses >5;
@@ -31,6 +32,9 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecke
                 } else if (isGameOver && isMissing) {
                     textColor = !isChecked ? 'red': "#FF7F50"	;
                 }
+                if(isSame) {
+                    textColor = !isChecked ? 'green': "#7fe757"	;
+                }
 
                 return (
                     <span key={index} style={{
@@ -44,6 +48,7 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecke
                     </span>
                 );
             })}
+            {isSame && <span>🎉</span>}
         </div>
     );
 };
