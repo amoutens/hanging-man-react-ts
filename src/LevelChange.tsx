@@ -9,7 +9,8 @@ export const LevelChange = ({ isCheckedTheme, selectDifficulty, setIsLevelClicke
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (levelListRef.current && !levelListRef.current.contains(event.target as Node)) {
+      const target = event.target as HTMLElement;
+      if (levelListRef.current && !levelListRef.current.contains(target as Node) && !target?.classList.contains('level-label')) {
         setIsLevelClicked(false);
       }
     };
