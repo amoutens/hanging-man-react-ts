@@ -7,6 +7,7 @@ import { ResetGame } from './ResetGame';
 import './style.scss'
 import { SliderTheme } from './SliderTheme';
 import { LevelChange } from './LevelChange';
+import { Hint } from './Hint';
 
 export function App() {
     const [wordArrDiff, setWordArrDiff] = React.useState<string[]>(words);
@@ -21,10 +22,28 @@ export function App() {
     const [isLevelClicked, setIsLevelClicked] = React.useState<boolean>(false);
     const [pressedKeys, setPressedKeys] = React.useState<string[]>([]);
     const [gameOver, setGameOver] = React.useState<boolean>(false);
+    const [clickCount, setClickCount] = React.useState<number>(3);
+    const [difficultLevel, setDifficultLevel] = React.useState<number>(0);
+    const [quantityOfHints, setQuantityOfHints] = React.useState<number>(0);
+
 
     React.useEffect(() => {
         setWordToGuess(wordArrDiff[Math.floor(Math.random() * wordArrDiff.length)]);
     }, [wordArrDiff]);
+    React.useEffect (() => {
+        if((wordToGuess.length === 4 && difficultLevel === 1) || (wordToGuess.length === 4 && difficultLevel === 0)) {setClickCount(1);
+            setQuantityOfHints(1);
+        }
+        else if((wordToGuess.length === 5 || wordToGuess.length === 6) || difficultLevel === 2) {setClickCount(2);
+            setQuantityOfHints(2);
+        }
+        else if(wordToGuess.length >= 7 || difficultLevel === 3) {setClickCount(3);
+            setQuantityOfHints(3);
+        }
+    }, [wordToGuess, difficultLevel, setClickCount])
+
+
+    
     const addGuessedLetter = (letter: string) => {
         if (wordToGuess.includes(letter) && !guessedLetters.includes(letter)) {
             setGuessedLetters([...guessedLetters, letter]);
@@ -48,21 +67,25 @@ export function App() {
         switch(index) {
             case 0:
                 setWordArrDiff(words);
+                setDifficultLevel(0);
                 handleReset();
                 setIsLevelClicked(false);
                 break;
             case 1:
                 setWordArrDiff(words.filter(el => el.length === 4));
+                setDifficultLevel(1);
                 handleReset();
                 setIsLevelClicked(false);
                 break;
             case 2:
                 setWordArrDiff(words.filter(el => el.length === 5 || el.length === 6));
+                setDifficultLevel(2);
                 handleReset();
                 setIsLevelClicked(false);
                 break;
             case 3:
                 setWordArrDiff(words.filter(el => el.length >= 7));
+                setDifficultLevel(3);
                 handleReset();
                 setIsLevelClicked(false);
                 break;
@@ -71,7 +94,14 @@ export function App() {
         }
     }
 
-
+    const handleHint = (): void => {
+        const wordLetters: string[] = wordToGuess.split('').filter(el => !guessedLetters.includes(el));
+        if(wordLetters.length > 0 && clickCount > 0) {
+            setGuessedLetters([...guessedLetters, wordLetters[Math.floor(Math.random() * wordLetters.length)]]);
+            setClickCount(prev => prev - 1);
+        }
+    }
+    
 
     const isWon = () => {
         if (isSame) return 'YOU WON!'
@@ -84,7 +114,7 @@ export function App() {
         setIncorrectLetters([]);
         setButtonClasses(Array.from({ length: 26 }, () => ''));
         setPressedKeys([]);
-        setGameOver(false);
+        setGameOver(false); 
     }
 
     const handleButtonClick = (letter: string, index: number) => {
@@ -94,7 +124,6 @@ export function App() {
         setButtonClasses(updatedButtonClasses);
     };
     console.log(wordToGuess)
-    console.log(isSame)
     return (
         <div style={{
             position: 'relative', 
@@ -125,6 +154,7 @@ export function App() {
                             {isLevelClicked && <span className={`level-container `}><LevelChange isCheckedTheme={isCheckedTheme} selectDifficulty={selectDifficulty} setIsLevelClicked={setIsLevelClicked}/></span>}
                         </span>
                     </span>
+                    <p><Hint isChecked={isCheckedTheme} handleHint={handleHint} clickCount = {clickCount} quantityOfHints={quantityOfHints} /></p>
                 </div>
                 <div className="container">
                     <SliderTheme isChecked={isCheckedTheme} handleInputChange={handleSliderChange}/>

@@ -170,9 +170,14 @@ font-size: 2rem;
   margin-bottom: 0.5em;;
 }
 
+.hint-btn {
+  @include btn; 
+  
+}
 
-
-
+.main-label + p {
+  margin-top: -90px;
+}
 
 .main-label {
   font-size: 5rem;
