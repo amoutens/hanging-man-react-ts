@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 
-const keys = ['a','b','c','d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w','x', 'y', 'z'];
 
-export const Keyboard = ({ handleButtonClick, numOfGuesses, buttonClasses, isSame, isChecked, pressedKeys, setPressedKeys, gameOver, setGameOver }:
-    { handleButtonClick: (letter: string, index:number) => void, numOfGuesses: number, buttonClasses: string[],
-         isSame: boolean, isChecked : boolean, pressedKeys: string[], setPressedKeys: (arr: string[]) => void, gameOver: boolean, setGameOver: (state: boolean) => void }) => {
+export const Keyboard = ({keys, handleButtonClick, numOfGuesses, buttonClasses, isSame, isChecked, pressedKeys, setPressedKeys, gameOver, setGameOver }:
+    {keys:string[], handleButtonClick: (letter: string, index:number) => void, numOfGuesses: number, buttonClasses: string[],
+         isSame: boolean, isChecked : boolean, pressedKeys: string[], setPressedKeys: (arr: string[]) => void, gameOver: boolean, setGameOver: (state: boolean) => void}) => {
     
 
     useEffect(() => {

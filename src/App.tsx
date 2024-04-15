@@ -9,6 +9,7 @@ import { SliderTheme } from './SliderTheme';
 import { LevelChange } from './LevelChange';
 import { Hint } from './Hint';
 
+
 export function App() {
     const [wordArrDiff, setWordArrDiff] = React.useState<string[]>(words);
     const [wordToGuess, setWordToGuess] = React.useState(() => {
@@ -20,13 +21,13 @@ export function App() {
     const [isCheckedTheme, setIsCheckedTheme] = React.useState<boolean>(false);
     const isSame = new Set(guessedLetters).size === new Set(wordToGuess).size;
     const [isLevelClicked, setIsLevelClicked] = React.useState<boolean>(false);
-    // const [isLevelBtnClicked, setIsLevelBtnClicked] = React.useState<boolean>(false);
     const [pressedKeys, setPressedKeys] = React.useState<string[]>([]);
     const [gameOver, setGameOver] = React.useState<boolean>(false);
     const [hintsClickCount, setHintsClickCount] = React.useState<number>(3);
     const [difficultLevel, setDifficultLevel] = React.useState<number>(0);
     const [quantityOfHints, setQuantityOfHints] = React.useState<number>(0);
 
+    const keys = ['a','b','c','d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w','x', 'y', 'z'];
 
     React.useEffect(() => {
         setWordToGuess(wordArrDiff[Math.floor(Math.random() * wordArrDiff.length)]);
@@ -98,7 +99,8 @@ export function App() {
     const handleHint = (): void => {
         const wordLetters: string[] = wordToGuess.split('').filter(el => !guessedLetters.includes(el));
         if(wordLetters.length > 0 && hintsClickCount > 0) {
-            setGuessedLetters([...guessedLetters, wordLetters[Math.floor(Math.random() * wordLetters.length)]]);
+            const hintLetter = wordLetters[Math.floor(Math.random() * wordLetters.length)];
+            handleButtonClick(hintLetter, keys.indexOf(hintLetter))
             setHintsClickCount(prev => prev - 1);
         }
     }
@@ -164,7 +166,7 @@ export function App() {
             <HangmanDrawing numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
             <HangmanWord isSame={isSame} wordToGuess={wordToGuess} guessedLetters={guessedLetters} numOfGuesses={incorrectLetters.length} isChecked={isCheckedTheme} />
             <div style={{ alignSelf: 'stretch' }}>
-                <Keyboard gameOver={gameOver} setGameOver={setGameOver} pressedKeys={pressedKeys} setPressedKeys={setPressedKeys} buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} isChecked={isCheckedTheme}  />
+                <Keyboard keys={keys} gameOver={gameOver} setGameOver={setGameOver} pressedKeys={pressedKeys} setPressedKeys={setPressedKeys} buttonClasses={buttonClasses} handleButtonClick={handleButtonClick} numOfGuesses={incorrectLetters.length} isSame={isSame} isChecked={isCheckedTheme}  />
             </div>
         </div>
     );
