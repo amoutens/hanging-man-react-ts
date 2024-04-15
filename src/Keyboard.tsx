@@ -35,7 +35,7 @@ export const Keyboard = ({keys, handleButtonClick, numOfGuesses, buttonClasses, 
         <div
             style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
                 gap: '.5rem'
             }}
         >

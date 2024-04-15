@@ -11,7 +11,7 @@ body{
   user-select: none;           
 }
 @mixin btn {
-font-size: 2rem;
+font-size: 1.4rem;
   background-color: transparent;
   color: darken(hsl(200, 100%, 50%), 10%);
   border: none;
@@ -34,7 +34,7 @@ font-size: 2rem;
     left: 0;
     width: 100%;
     height: 100%;
-    border: 3px solid darken(hsl(200, 100%, 50%), 10%);
+    border: 2px solid darken(hsl(200, 100%, 50%), 10%);
     transition: opacity 0.3s, border 0.3s;
     box-sizing: border-box;
     border-radius: 20px;
@@ -84,7 +84,7 @@ font-size: 2rem;
       left: 0;
       width: 100%;
       height: 100%;
-      border: 3px solid darken(rgb(101, 81, 213), 10%);
+      border: 2px solid darken(rgb(101, 81, 213), 10%);
       transition: opacity 0.3s, border 0.3s;
       box-sizing: border-box;
       border-radius: 20px;
@@ -115,12 +115,12 @@ font-size: 2rem;
 
 .key {
   width: 100%;
-  border: 3px solid black;
+  border: 2px solid black;
   background: none;
   aspect-ratio: 1/1;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
-  padding: .5rem;
+  padding: .3rem;
   font-weight: bold;
   cursor: pointer;
   color: black;
@@ -172,7 +172,7 @@ font-size: 2rem;
 
 .hint-btn {
   @include btn; 
-  
+  margin-top: 3%;
 }
 
 .main-label + p {
@@ -180,12 +180,11 @@ font-size: 2rem;
 }
 
 .main-label {
-  font-size: 5rem;
+  font-size: 4rem;
   padding: 1em 0.6em;
   font-weight: bold;
   text-transform: uppercase;
   font-family: monospace;
-
   &.dark-theme {
       color: white;
   }
@@ -193,8 +192,8 @@ font-size: 2rem;
 .switch {
   position: relative;
   display: inline-block;
-  width: 100px;
-  height: 54px;
+  width: 75px;
+  height: 40.5px;
   &.input {
       opacity: 0;
       width: 0;
@@ -215,8 +214,8 @@ font-size: 2rem;
   &:before {
       position: absolute;
       content: "";
-      height: 46px;
-      width: 46px;
+      height:34px;
+      width: 34px;
       left: 4px;
       bottom: 4px;
       background-color: white;
@@ -235,9 +234,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(46px);
-  -ms-transform: translateX(46px);
-  transform: translateX(46px);
+  -webkit-transform: translateX(34px);
+  -ms-transform: translateX(34px);
+  transform: translateX(34px);
 }
 
 .slider.round {
@@ -249,14 +248,15 @@ input:checked + .slider:before {
 }
   .level-list {
     list-style: none;
-    border: 3px solid #3e3e3e;
+    border: 2px solid #3e3e3e;
     max-width: 400px;
     padding: 10px 30px;
     text-align: center;
     z-index: 9999;
+    width: 300px;
     margin: auto;
     position: absolute;
-    left: 250px;
+    left: 80px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.95);
     transition: 0.2s;
@@ -272,12 +272,12 @@ input:checked + .slider:before {
       border-top: 3px solid #3e3e3e;
       border-left: 3px solid #3e3e3e;
       border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       transition: 0.2s;
     }
     &.dark-theme{
       border: 3px solid #000000;
-      background-color: rgba(39, 39, 39, 0.95);
+      background-color: rgba(39, 39, 39, 1);
       transition: 0.2s;
       &::before {
         border-top: 3px solid rgb(0, 0, 0);
@@ -299,13 +299,13 @@ input:checked + .slider:before {
   justify-content: right;
 }
 li {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   margin-bottom: 10px;
   color: darken(hsl(200, 100%, 50%), 10%);
   padding: auto;
   transition: 0.2s;
   &:hover{
-    border-bottom: 3px solid lighten(hsl(200, 100%, 50%), 10%);;
+    border-bottom: 2px solid lighten(hsl(200, 100%, 50%), 10%);;
     color: lighten(hsl(200, 100%, 50%), 10%);
     transform: scale(1.05);
     transition: 0.2s;
@@ -315,12 +315,13 @@ li {
     color: lighten(rgb(101, 81, 213), 10%);
     transition: 0.2s;
     &:hover {
-      border-bottom: 3px solid rgb(101, 81, 213);
+      border-bottom: 2px solid rgb(101, 81, 213);
       color: (rgb(146, 131, 232), 10%);
     }
   }
 }
 .btn-container {
   text-align: center;
+  margin-top:-5%;
   
 }

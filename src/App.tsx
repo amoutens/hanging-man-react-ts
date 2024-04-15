@@ -143,6 +143,7 @@ export function App() {
                 fontSize: '2rem',
                 display: 'block',
                 textAlign: 'center',
+                marginBottom:'-5%'
             }}>
                 <div className='main-container'>
                     <span className={`main-label ${!isCheckedTheme ? '' : 'dark-theme'}`}>
@@ -152,10 +153,11 @@ export function App() {
                             <button onClick={() => setIsLevelClicked((prev) => !prev)} className={`level-label ${!isCheckedTheme ? '' : 'dark-theme'}`}>
                                 Choose Level
                             </button>
-                        </div>
+                        
                         <span className='level-main-container'>
                             {isLevelClicked && <span className={`level-container `}><LevelChange isCheckedTheme={isCheckedTheme} selectDifficulty={selectDifficulty} setIsLevelClicked={setIsLevelClicked}/></span>}
                         </span>
+                        </div>
                     </span>
                     <p><Hint isChecked={isCheckedTheme} handleHint={handleHint} hintsClickCount = {hintsClickCount} quantityOfHints={quantityOfHints} /></p>
                 </div>
