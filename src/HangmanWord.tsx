@@ -14,14 +14,7 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecke
     const isGameOver = numOfGuesses >5;
 
     return (
-        <div style={{
-            display: 'flex',
-            gap: '.25em',
-            fontSize: '5rem',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            fontFamily: 'monospace'
-        }}>
+        <div className='word-container'>
             {word.split('').map((letter, index) => {
                 const isGuessed = guessedLetters.includes(letter);
                 const isMissing = missingLetters.includes(letter);

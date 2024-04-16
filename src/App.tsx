@@ -128,23 +128,8 @@ export function App() {
     };
     console.log(wordToGuess)
     return (
-        <div style={{
-            position: 'relative', 
-            maxWidth: '800px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '2rem',
-            margin: '0 auto',
-            alignItems: 'center',
-        }}>
-            <div style={{
-                position: 'relative', 
-                zIndex: 999, 
-                fontSize: '2rem',
-                display: 'block',
-                textAlign: 'center',
-                marginBottom:'-5%'
-            }}>
+        <div className='game-container'>
+            <div className='header-container'>
                 <div className='main-container'>
                     <span className={`main-label ${!isCheckedTheme ? '' : 'dark-theme'}`}>
                         {(incorrectLetters.length > 5 || isSame) ? isWon() : 'Play Hangman!'} 
@@ -161,7 +146,7 @@ export function App() {
                     </span>
                     <p><Hint isChecked={isCheckedTheme} handleHint={handleHint} hintsClickCount = {hintsClickCount} quantityOfHints={quantityOfHints} /></p>
                 </div>
-                <div className="container">
+                <div className="slider-container">
                     <SliderTheme isChecked={isCheckedTheme} handleInputChange={handleSliderChange}/>
                 </div>
             </div>

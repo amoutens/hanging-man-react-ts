@@ -33,12 +33,7 @@ export const Keyboard = ({keys, handleButtonClick, numOfGuesses, buttonClasses, 
 
     return (
         <div
-            style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-                gap: '.5rem'
-            }}
-        >
+        className="keyboard">
             {keys.map((key, index) => (
                 <button
                     className={`key ${!isChecked ? '' : 'dark-theme'} ${buttonClasses[index]}`}
