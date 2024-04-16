@@ -132,7 +132,7 @@ export function App() {
             <div className='header-container'>
                 <div className='main-container'>
                     <span className={`main-label ${!isCheckedTheme ? '' : 'dark-theme'}`}>
-                        {(incorrectLetters.length > 5 || isSame) ? isWon() : 'Play Hangman!'} 
+                        {(incorrectLetters.length > 5 || isSame) ? isWon() : 'Hangman!'} 
                         <div className='btn-container'>
                             <ResetGame isChecked={isCheckedTheme} handleReset={handleReset} />
                             <button onClick={() => setIsLevelClicked((prev) => !prev)} className={`level-label ${!isCheckedTheme ? '' : 'dark-theme'}`}>
