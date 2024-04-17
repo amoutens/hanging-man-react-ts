@@ -1,27 +1,28 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 
 export const Keyboard = ({keys, handleButtonClick, numOfGuesses, buttonClasses, isSame, isChecked, pressedKeys, setPressedKeys, gameOver, setGameOver }:
     {keys:string[], handleButtonClick: (letter: string, index:number) => void, numOfGuesses: number, buttonClasses: string[],
-         isSame: boolean, isChecked : boolean, pressedKeys: string[], setPressedKeys: (arr: string[]) => void, gameOver: boolean, setGameOver: (state: boolean) => void}) => {
+         isSame: boolean, isChecked : boolean, pressedKeys: string[], setPressedKeys: (arr: string[]) => void, gameOver: boolean,
+          setGameOver: (state: boolean) => void }) => {
     
 
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            const pressedKey = event.key.toLowerCase();
-            if ((keys.includes(pressedKey) && !pressedKeys.includes(pressedKey) && gameOver===false)) {
-                event.preventDefault();
-                handleButtonClick(pressedKey, keys.indexOf(pressedKey))
-                setPressedKeys([...pressedKeys, pressedKey]);
-            }
-        };
+    const handleKeyDown = (event: KeyboardEvent) => {
+        const pressedKey = event.key.toLowerCase();
+        if (keys.includes(pressedKey) && !pressedKeys.includes(pressedKey) && !gameOver) {
+            event.preventDefault();
+            handleButtonClick(pressedKey, keys.indexOf(pressedKey));
+            setPressedKeys([...pressedKeys, pressedKey]);
+        }
+    };
 
-        window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [pressedKeys, gameOver, setPressedKeys]);
+    return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+    };
+    }, [keys, pressedKeys, gameOver, handleButtonClick, setPressedKeys]);
 
 
     useEffect(() => {

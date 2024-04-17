@@ -49,6 +49,7 @@ export function App() {
     const addGuessedLetter = (letter: string) => {
         if (wordToGuess.includes(letter) && !guessedLetters.includes(letter)) {
             setGuessedLetters([...guessedLetters, letter]);
+            setPressedKeys([...guessedLetters, letter]);
         } else if (!incorrectLetters.includes(letter)) {
             setIncorrectLetters([...incorrectLetters, letter]);
         }
@@ -121,10 +122,15 @@ export function App() {
     }
 
     const handleButtonClick = (letter: string, index: number) => {
-        addGuessedLetter(letter);
-        const updatedButtonClasses = [...buttonClasses];
-        updatedButtonClasses[index] = wordToGuess.includes(letter) ? 'active' : 'inactive';
-        setButtonClasses(updatedButtonClasses);
+        if(guessedLetters.includes(letter) === false){
+            console.log(1)
+            addGuessedLetter(letter);
+            const updatedButtonClasses = [...buttonClasses];
+            updatedButtonClasses[index] = wordToGuess.includes(letter) ? 'active' : 'inactive';
+            setButtonClasses(updatedButtonClasses);
+            
+        }
+        
     };
     console.log(wordToGuess)
     return (
