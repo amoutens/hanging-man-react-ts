@@ -1,5 +1,3 @@
-import React from 'react';
-
 type HangmanWordProps = {
     wordToGuess: string,
     guessedLetters: string[],
@@ -9,17 +7,16 @@ type HangmanWordProps = {
 }
 
 export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecked, isSame}: HangmanWordProps) => {
-    const word = wordToGuess;
-    const missingLetters = wordToGuess.split('').filter(el => !guessedLetters.includes(el));
-    const isGameOver = numOfGuesses >5;
+    const missingLetters = wordToGuess.split('')
+    .filter(el => !guessedLetters.includes(el));
+    const isGameOver = numOfGuesses > 5;
 
     return (
         <div className='word-container'>
-            {word.split('').map((letter, index) => {
+            {wordToGuess.split('').map((letter, index) => {
                 const isGuessed = guessedLetters.includes(letter);
                 const isMissing = missingLetters.includes(letter);
                 let textColor = 'transparent';
-
                 if (isGuessed) {
                     textColor = !isChecked ? 'black' : 'white';
                 } else if (isGameOver && isMissing) {
@@ -28,12 +25,10 @@ export const HangmanWord = ({wordToGuess, guessedLetters, numOfGuesses, isChecke
                 if(isSame) {
                     textColor = !isChecked ? 'green': "#7fe757"	;
                 }
-
                 return (
                     <span key={index} style={{
                         borderBottom: `.1em solid ${!isChecked? "black" : 'white'}`,
-                        color: textColor,
-                        
+                        color: textColor
                     }}>
                         <span>
                             {letter}

@@ -1,11 +1,8 @@
-import React from 'react'
-
 
 type HangmanDrawingProps = {
     numOfGuesses: number,
     isChecked : boolean
 }
-
 
 export const HangmanDrawing = ({numOfGuesses, isChecked}: HangmanDrawingProps ) => {
     const HEAD = (
